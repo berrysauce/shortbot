@@ -1,0 +1,59 @@
+require 'discordrb'
+require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+# define config for APIs
+CONFIG = YAML.load_file('config.yaml')
+
+# discord API
+bot = Discordrb::Commands::CommandBot.new token: CONFIG['discord'], prefix: '!'
+
+bot.run true
+
+# shorten command
+bot.command(:short, max_args: 1, description: 'Shortens a URL via kutt.it', usage: 'short [longurl]') do |_event, longurl|
+  # shorturl = k.submit(longurl, customurl="", password="")
+	# finaltext = 'Link shortened! ' + shorturl.to_s
+  
+  longurl = longurl.to_s
+  puts longurl
+  
+  url = URI("https://api.rebrandly.com/v1/links")
+
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  request = Net::HTTP::Post.new(url)
+  request["content-type"] = 'application/json'
+  request["apikey"] = CONFIG['rebrandly']
+  request.body = "{\"domain\":{\"id\":\"b6adbb5fd4734614b9d51ca400b6af04\"},\"destination\":\"#{longurl}\"}"
+
+  response = http.request(request)
+  puts response.read_body
+  puts shorturl = JSON.parse(response.read_body)['shortUrl']
+  
+  finaltext = 'Link shortened! https://' + shorturl.to_s + ' :white_check_mark:'
+end
+
+bot.command(:ping, description: 'Get your Ping to the Bot', usage: 'ping') do |event|
+  # The `respond` method returns a `Message` object, which is stored in a variable `m`. The `edit` method is then called
+  # to edit the message with the time difference between when the event was received and after the message was sent.
+  m = event.respond('Pong!')
+  m.edit "Pong! Time taken: #{Time.now - event.timestamp} seconds."
+end
+
+bot.command :help do |event|
+  event << '**shortbot Help Menu** :fire_extinguisher:'
+  event << 'Short a link:  `!short [url]`'
+  event << 'Get your Ping to the Bot:  `!ping`'
+  event << 'Get the current version:  `!version`'
+  event << '**Support the Development** :money_with_wings:'
+  event << 'Donate here: <https://shortbot.xyz/donate>'
+
+  # Here we don't have to worry about the return value because the `event << line` statement automatically returns nil.
+end
+
+bot.join

@@ -8,7 +8,7 @@ require 'openssl'
 CONFIG = YAML.load_file('config.yaml')
 
 # discord API
-bot = Discordrb::Commands::CommandBot.new token: CONFIG['discord'], prefix: '!'
+bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '!'
 
 bot.run true
 
@@ -28,7 +28,7 @@ bot.command(:short, max_args: 1, description: 'Shortens a URL via kutt.it', usag
 
   request = Net::HTTP::Post.new(url)
   request["content-type"] = 'application/json'
-  request["apikey"] = CONFIG['rebrandly']
+  request["apikey"] = ENV['REBRANDLY']
   request.body = "{\"domain\":{\"id\":\"b6adbb5fd4734614b9d51ca400b6af04\"},\"destination\":\"#{longurl}\"}"
 
   response = http.request(request)

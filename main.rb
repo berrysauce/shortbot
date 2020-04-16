@@ -4,9 +4,6 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-# define config for APIs
-CONFIG = YAML.load_file('config.yaml')
-
 # discord API
 bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '!'
 

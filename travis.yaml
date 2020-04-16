@@ -1,0 +1,9 @@
+language: ruby
+before_install:
+    - gem install discordrb
+    - gem install json
+    - gem imstall uri
+    - gem imstall net/http
+    - gem install openssl
+install:
+    - ruby main.rb

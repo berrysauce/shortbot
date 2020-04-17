@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+ - 2.2
+before_install:
+ - gem install discordrb
+ - gem install net
+ - gem install openssl
+ - gem install uri
+ - gem indtall json
+ - export DISCORD=${{ secrets.DISCORD }}
+ - export REBRANDLY=${{ secrets.REBRANDLY }}
+ - export VERSION=${{ secrets.VERSION }}
+ - ruby main.rb
+ 

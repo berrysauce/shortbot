@@ -2,13 +2,11 @@ language: ruby
 rvm:
  - 2.2
 before_install:
+ - apt-get update
  - gem install discordrb
  - gem install net
  - gem install openssl
  - gem install uri
- - gem indtall json
- - export DISCORD=${{ secrets.DISCORD }}
- - export REBRANDLY=${{ secrets.REBRANDLY }}
- - export VERSION=${{ secrets.VERSION }}
+ - gem install json
  - ruby main.rb
  

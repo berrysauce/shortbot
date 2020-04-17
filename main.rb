@@ -5,7 +5,7 @@ require 'net/http'
 require 'openssl'
 
 # discord API
-bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '!'
+bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '#'
 
 bot.run true
 
@@ -32,7 +32,7 @@ bot.command(:short, max_args: 1, description: 'Shortens a URL via kutt.it', usag
   puts response.read_body
   puts shorturl = JSON.parse(response.read_body)['shortUrl']
   
-  finaltext = 'Link shortened! https://' + shorturl.to_s + ' :white_check_mark:'
+  finaltext = 'Link shortened! <https://' + shorturl.to_s + '> :white_check_mark:'
 end
 
 bot.command(:ping, description: 'Get your Ping to the Bot', usage: 'ping') do |event|
@@ -44,13 +44,20 @@ end
 
 bot.command :help do |event|
   event << '**shortbot Help Menu** :fire_extinguisher:'
-  event << 'Short a link:  `!short [url]`'
-  event << 'Get your Ping to the Bot:  `!ping`'
-  event << 'Get the current version:  `!version`'
+  event << 'Short a link:  `#short [url]`'
+  event << 'Get your Ping to the Bot:  `#ping`'
+  event << 'Get the current version:  `#version`'
+  event << 'Access this Help Menu:  `#help`'
   event << '**Support the Development** :money_with_wings:'
   event << 'Donate here: <https://shortbot.xyz/donate>'
+  event << '**FAQ** :speech_balloon:'
+  event << 'More stuff here: <https://brry.cc/shortbot>'
 
   # Here we don't have to worry about the return value because the `event << line` statement automatically returns nil.
+end
+
+bot.command :version do |event|
+  versiontext = 'Current Version: ' + ENV['VERSION']
 end
 
 bot.join

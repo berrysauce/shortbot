@@ -1,5 +1,5 @@
 # shortbot
 Short Links via Discord 🔗✨
 
-### FAQ
+## FAQ
 https://brry.cc/shortbot

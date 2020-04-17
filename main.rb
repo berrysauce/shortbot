@@ -7,6 +7,10 @@ require 'openssl'
 # discord API
 bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '#'
 
+bot.ready() do |event|
+  bot.playing = '#help'
+end
+
 bot.run true
 
 # shorten command

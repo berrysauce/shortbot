@@ -1,3 +1,8 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/berrysauce/shortbot)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/berrysauce/shortbot)
+![GitHub last commit](https://img.shields.io/github/last-commit/berrysauce/shortbot)
+
+
 # shortbot
 Short Links via Discord 🔗✨
 

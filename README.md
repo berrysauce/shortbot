@@ -1,4 +1,4 @@
-![shortbot-logo](https://i.ibb.co/GdpLVNQ/3274-E6-BC-CEBC-45-CD-BD1-B-8-CF36500-D29-A.png)
+![shortbot-logo](https://i.ibb.co/kJ6M9jM/2-D293479-7282-4-C08-A43-A-EACDE6-A8-C561.png)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/berrysauce/shortbot)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/berrysauce/shortbot)

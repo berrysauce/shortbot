@@ -1,0 +1,4 @@
+export DISCORD=
+export REBRANDLY=
+export VERSION=
+ruby main.rb

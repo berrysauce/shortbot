@@ -2,4 +2,4 @@
 Short Links via Discord 🔗✨
 
 # FAQ
->> https://brry.cc/shortbot <<
+https://brry.cc/shortbot

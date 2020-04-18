@@ -7,8 +7,14 @@ require 'openssl'
 # discord API
 bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '#'
 
+bot.server_create() do |event|
+  botservers = bot.servers.count
+  bot.playing = '#help - on ' + botservers.to_s + ' Servers'
+end
+
 bot.ready() do |event|
-  bot.playing = '#help'
+  botservers = bot.servers.count
+  bot.playing = '#help - on ' + botservers.to_s + ' Servers'
 end
 
 bot.run true

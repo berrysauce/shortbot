@@ -3,6 +3,7 @@ require 'json'
 require 'uri'
 require 'net/http'
 require 'openssl'
+require 'securerandom'
 
 # discord API
 bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '#'
@@ -24,7 +25,13 @@ bot.command(:short, max_args: 1, description: 'Shortens a URL via kutt.it', usag
   # shorturl = k.submit(longurl, customurl="", password="")
 	# finaltext = 'Link shortened! ' + shorturl.to_s
   
-  longurl = longurl.to_s
+  slashtag = SecureRandom.urlsafe_base64(3)
+  
+  if longurl.include? "http"
+    longurl = longurl.to_s
+  else
+    longurl = "http://" + longurl
+  end
   puts longurl
   
   url = URI("https://api.rebrandly.com/v1/links")
@@ -36,7 +43,7 @@ bot.command(:short, max_args: 1, description: 'Shortens a URL via kutt.it', usag
   request = Net::HTTP::Post.new(url)
   request["content-type"] = 'application/json'
   request["apikey"] = ENV['REBRANDLY']
-  request.body = "{\"domain\":{\"id\":\"b6adbb5fd4734614b9d51ca400b6af04\"},\"destination\":\"#{longurl}\"}"
+  request.body = "{\"domain\":{\"id\":\"b6adbb5fd4734614b9d51ca400b6af04\"},\"slashtag\":\"#{slashtag}\",\"destination\":\"#{longurl}\"}"
 
   response = http.request(request)
   puts response.read_body

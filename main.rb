@@ -74,7 +74,7 @@ bot.command :help do |event|
 end
 
 bot.command :version do |event|
-  versiontext = 'Current Version: ' + ENV['VERSION']
+  versiontext = '[TEST] Current Version: ' + ENV['VERSION']
 end
 
 bot.join

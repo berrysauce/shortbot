@@ -65,4 +65,5 @@ bot.command :version do |event|
   versiontext = '[TEST] Current Version: ' + ENV['VERSION']
 end
 
+# Run the bot
 bot.run

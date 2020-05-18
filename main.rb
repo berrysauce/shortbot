@@ -8,6 +8,8 @@ require 'securerandom'
 # discord API
 bot = Discordrb::Commands::CommandBot.new token: ENV['DISCORD'], prefix: '#'
 
+bot.run true
+
 # shorten command
 bot.command(:short, max_args: 1, description: 'Shortens a URL via kutt.it', usage: 'short [longurl]') do |_event, longurl|
   # shorturl = k.submit(longurl, customurl="", password="")

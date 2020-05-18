@@ -1,3 +1,0 @@
-export DISCORD=
-export REBRANDLY=
-ruby main.rb

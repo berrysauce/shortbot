@@ -8,6 +8,13 @@
 # shortbot
 Short Links via Discord 🔗✨
 
+---
+
+**FOR NOW DISCONTINUED - CHECK BACK LATER**
+Shortbot Wiki: https://shortbot.typehut.com/
+
+---
+
 ## FAQ
 https://brry.cc/shortbot
 
